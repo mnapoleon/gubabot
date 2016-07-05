@@ -33,15 +33,12 @@ module.exports = (robot) ->
           else
             $(this).children('td .dr').each (j, element) ->
               specNum = $(this).text();
-              specName = $(this).next('td').text()
-              specTeam = $(this).next('td').next('td').text()
+              #specName = $(this).next('td').text()
+              #specTeam = $(this).next('td').next('td').text()
               #specPos = $(this).next('td').next('td').next('td').next('td').text()
-              #payload += specNum + " | " + specName + " | " + specTeam + " | " + specPos
-              console.log(specNum.trim())
-              console.log(specName)
-              console.log(specTeam)
-              console.log(specPos)
-              payload += "Playerssssssss"
+              payload += specName + " | " + specTeam + " | " + specPos
+              
+              #payload += "Playerssssssss"
         
         #res.send payload
               
