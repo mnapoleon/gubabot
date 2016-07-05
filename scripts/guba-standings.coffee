@@ -134,10 +134,9 @@ module.exports = (robot) ->
                 pct[teamName] = $(this).next('td').next('td').next('td').text()
                 gb[teamName] = $(this).next('td').next('td').next('td').next('td').text()
                 payload += padString(teamName, 25) + " | " + padString(wins[teamName],5) + padString(loses[teamName],5) + padString(pct[teamName], 6) + " " + padString(gb[teamName], 5) + "\n"
-
-        resString = "```" + payload + "```"
-        console.log(payload)
-        res.send resString
+        
+        payload = "```" + payload + "```"
+        res.send payload
 
 padString = (str, length) ->
 
