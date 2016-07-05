@@ -38,8 +38,7 @@ module.exports = (robot) ->
               specPos = $(this).next('td').next('td').next('td').next('td').text()
               payload += specNum + " | " + specName + " | " + specTeam + " | " + specPos + "\n"
               
-              #payload += "Playerssssssss"
-        
+        payload = "```" + payload + "```" 
         res.send payload
         
   robot.respond /standings (.*)/i, (res) ->
