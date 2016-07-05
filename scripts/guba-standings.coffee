@@ -36,7 +36,7 @@ module.exports = (robot) ->
               specName = $(this).next('td').text()
               specTeam = $(this).next('td').next('td').text()
               specPos = $(this).next('td').next('td').next('td').next('td').text()
-              payload += specNum + " | " + specName + " | " + specTeam + " | " + specPos
+              payload += specNum + " | " + specName + " | " + specTeam + " | " + specPos + "\n"
               
               #payload += "Playerssssssss"
         
