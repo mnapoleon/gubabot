@@ -22,12 +22,11 @@ module.exports = (robot) ->
         res.send date
        
   robot.respond /topspecs hitters/i, (res) ->
-    host = 'http://www.thefibb.net/news/html/leagues/league_100_top_prospects.html'
-    encoding = 'utf8'
-    
-    request host, encoding, (err, response, body) ->
+    host = 'http://www.thefibb.net/news/html/leagues/league_100_top_prospects.html';
+    request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
+        console.log(body)
         payload = ""
         $('table .data').eq(0).children('tr').each (i, element) ->
           if (i == 0)
@@ -43,12 +42,33 @@ module.exports = (robot) ->
         payload = "```" + payload + "```" 
         res.send payload
         
+  robot.respond /topspecs pitchers/i, (res) ->
+    host = 'http://www.thefibb.net/news/html/leagues/league_100_top_prospects.html';
+    request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
+      if not err and response.statusCode == 200
+        $ = cheerio.load body
+        console.log(body)
+        payload = ""
+        $('table .data').eq(1).children('tr').each (i, element) ->
+          if (i == 0)
+            payload += "Top Hitting Specs\n"
+          else
+            $(this).children('td .dr').eq(0).each (j, element) ->
+              specNum = $(this).text();
+              specName = $(this).next('td').text()
+              specTeam = $(this).next('td').next('td').text()
+              specPos = $(this).next('td').next('td').next('td').next('td').text()
+              payload += specNum + " | " + specName + " | " + specTeam + " | " + specPos + "\n"
+              
+        payload = "```" + payload + "```" 
+        res.send payload 
+        
   robot.respond /standings (.*)/i, (res) ->
     division = res.match[1] 
     divLC = division.toLowerCase()
     
-    host = 'http://www.thefibb.net/news/html/leagues/league_100_standings.html';
-    request host, (err, response, body) ->
+    host = 'http://www.thefibb.net/news/html/leagues/league_100_standings.html'
+    request.get {uri: host, encoding : 'binary'}, (err, response, body) ->
       if not err and response.statusCode == 200
         
         $ = cheerio.load body
