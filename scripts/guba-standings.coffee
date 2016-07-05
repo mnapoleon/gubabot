@@ -30,14 +30,15 @@ module.exports = (robot) ->
         payload = " "
         $('table .data').eq(0).children('tr').each (i, element) ->
           if (i == 0)
-            payload = "Top Hitting Specs"
+            payload = "Top Hitting Specs\n"
           else
             $(this).children('td .dr').each (j, element) ->
               specNum = $(this).text();
               specName = $(this).next('td').text()
               specTeam = $(this).next('td').next('td').text()
               specPos = $(this).next('td').next('td').next('td').next('td').text()
-              payload += specNum + " | " + specName + " | " + specTeam + " | " + specPos
+              #payload += specNum + " | " + specName + " | " + specTeam + " | " + specPos
+              payload += "Playerssssssss"
         
         res.send payload
               
