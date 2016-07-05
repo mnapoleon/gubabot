@@ -22,21 +22,21 @@ module.exports = (robot) ->
         date = $('th[class=dl]').first().text()
         res.send date
        
-  robot.respond /get last pick/i, (res) ->
+  robot.respond /draft/i, (res) ->
     host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
-        payload = "Last pick"
+        payload = "Last pick "
         $('td').each (i, element) ->
           text = $(this).text()
-          if (text.substring(0,7) == 'Pick due')
+          if (text.substring(0,4) is 'Pick')
             $(this).parent().prev('tr').children('td').each (i, element) ->
               pickNum = $(this).text()
               pickTeam = $(this).next('td').text()
               pickName = $(this).next('td').next('td').text()
               payload += pickNum + ": " + pickName + " by " + pickTeam
-        
+              false
         payload = "```" + payload + "```" 
         res.send payload
       
