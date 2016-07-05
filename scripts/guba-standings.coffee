@@ -31,7 +31,7 @@ module.exports = (robot) ->
           if (i == 0)
             payload += "Top Hitting Specs\n"
           else
-            $(this).children('td .dr').each (j, element) ->
+            $(this).children('td .dr').eq(0).each (j, element) ->
               specNum = $(this).text();
               specName = $(this).next('td').text()
               specTeam = $(this).next('td').next('td').text()
