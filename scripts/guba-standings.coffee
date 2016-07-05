@@ -27,7 +27,7 @@ module.exports = (robot) ->
     request host, (err, response, body) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
-        
+        payload = " "
         $('table .data').eq(0).children('tr').each (i, element) ->
           if (i == 0)
             payload = "Top Hitting Specs"
@@ -38,6 +38,7 @@ module.exports = (robot) ->
               specTeam = $(this).next('td').next('td').text()
               specPos = $(this).next('td').next('td').next('td').next('td').text()
               payload += specNum + " | " + specName + " | " + specTeam + " | " + specPos
+        
         res.send payload
               
   robot.respond /standings (.*)/i, (res) ->
