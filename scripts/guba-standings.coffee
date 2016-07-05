@@ -3,7 +3,8 @@
 #
 # Commands:
 #   thegubabot standings <division> - Displays standings for that division.  Division names are east, central, west, latino, euro, fareast and mbbawc or fibbwc for wildcard standings? Example 'standings fibbwc'
-#
+#   thegubabot topspecs hitters - will return hitters from Top 100 Prospects
+#   thegubabot topspecs pitchers - will return pitchers from Top 100 Prospects
 # Notes:
 #   These commands are grabbed from comment blocks at the top of each file.
 
@@ -51,7 +52,7 @@ module.exports = (robot) ->
         payload = ""
         $('table .data').eq(1).children('tr').each (i, element) ->
           if (i == 0)
-            payload += "Top Hitting Specs\n"
+            payload += "Top Pitching Specs\n"
           else
             $(this).children('td .dr').eq(0).each (j, element) ->
               specNum = $(this).text();
