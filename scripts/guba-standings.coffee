@@ -23,7 +23,7 @@ module.exports = (robot) ->
        
   robot.respond /topspecs hitters/i, (res) ->
     host = 'http://www.thefibb.net/news/html/leagues/league_100_top_prospects.html'
-    encoding = 'utf-8'
+    encoding = 'utf8'
     
     request host, encoding, (err, response, body) ->
       if not err and response.statusCode == 200
