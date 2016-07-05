@@ -51,7 +51,7 @@ module.exports = (robot) ->
           text = $(this).text()
           if (text.substring(0,4) is 'Pick')
             teamOC = $(this).prev('td').text()
-            payload += teamOC
+            payload += teamOC + " " + text
             false
         payload = "```" + payload + "```" 
         res.send payload
