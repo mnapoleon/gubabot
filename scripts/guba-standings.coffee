@@ -20,7 +20,26 @@ module.exports = (robot) ->
         $ = cheerio.load body
         date = $('th[class=dl]').first().text()
         res.send date
+       
+  robot.respond /topspecs hitters/i, (res) ->
+  
+    host = http://www.thefibb.net/news/html/leagues/league_100_top_prospects.html;
+    request host, (err, response, body) ->
+      if not err and response.statusCode == 200
+        $ = cheerio.load body
         
+        $('table .data').eq(0).children('tr').each (i, element) ->
+          if (i == 0)
+            payload = "Top Hitting Specs"
+          else
+            $(this).children('td .dr').each (j, element) ->
+              specNum = $(this).text();
+              specName = $(this).next('td').text()
+              specTeam = $(this).next('td').next('td').text()
+              specPos = $(this).next('td').next('td').next('td').next('td').text()
+              payload += specNum + " | " + specName + " | " + specTeam + " | " + specPos
+        res.send payload
+              
   robot.respond /standings (.*)/i, (res) ->
     division = res.match[1] 
     divLC = division.toLowerCase()
