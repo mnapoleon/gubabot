@@ -23,7 +23,9 @@ module.exports = (robot) ->
        
   robot.respond /topspecs hitters/i, (res) ->
     host = 'http://www.thefibb.net/news/html/leagues/league_100_top_prospects.html'
-    request host, (err, response, body) ->
+    encoding = 'utf-8'
+    
+    request host, encoding, (err, response, body) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
         payload = ""
