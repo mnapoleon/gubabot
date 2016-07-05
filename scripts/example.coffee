@@ -10,8 +10,13 @@
 
 module.exports = (robot) ->
 
-  # robot.hear /badger/i, (res) ->
-  #   res.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
+  robot.hear /badger/i, (res) ->
+    res.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
+    
+  robot.respond /test two things (\D+) and (\D+)/i, (res) ->
+    thing1 = res.match[1]
+    thing2 = res.match[2]
+    res.reply "Thing1 #{thing1} and thing2 #{thing2}"
   #
   # robot.respond /open the (.*) doors/i, (res) ->
   #   doorType = res.match[1]
