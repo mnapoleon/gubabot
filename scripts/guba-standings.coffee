@@ -21,7 +21,7 @@ module.exports = (robot) ->
         date = $('th[class=dl]').first().text()
         res.send date
        
-  robot.respond /topspecs hitters/i, (res) ->
+  ###robot.respond /topspecs hitters/i, (res) ->
     host = http://www.thefibb.net/news/html/leagues/league_100_top_prospects.html;
     request host, (err, response, body) ->
       if not err and response.statusCode == 200
@@ -41,7 +41,7 @@ module.exports = (robot) ->
               #payload += "Playerssssssss"
         
         #res.send payload
-              
+  ###            
   robot.respond /standings (.*)/i, (res) ->
     division = res.match[1] 
     divLC = division.toLowerCase()
