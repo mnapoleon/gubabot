@@ -22,6 +22,24 @@ module.exports = (robot) ->
         date = $('th[class=dl]').first().text()
         res.send date
        
+  robot.respond /get last pick/i, (res) ->
+    host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
+    request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
+      if not err and response.statusCode == 200
+        $ = cheerio.load body
+        payload = "Last pick"
+        $('td').each (i, element) ->
+          text = $(this).text()
+          if (text.substring(0,7) == 'Pick due')
+            $(this).parent().prev('tr').children('td').each (i, element) ->
+              pickNum = $(this).text()
+              pickTeam = $(this).next('td').text()
+              pickName = $(this).next('td').next('td').text()
+              payload += pickNum + ": " + pickName + " by " + pickTeam
+        
+        payload = "```" + payload + "```" 
+        res.send payload
+      
   robot.respond /topspecs hitters/i, (res) ->
     host = 'http://www.thefibb.net/news/html/leagues/league_100_top_prospects.html';
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
