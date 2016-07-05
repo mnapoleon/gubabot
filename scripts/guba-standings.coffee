@@ -35,9 +35,9 @@ module.exports = (robot) ->
               specNum = $(this).text();
               specName = $(this).next('td').text()
               specTeam = $(this).next('td').next('td').text()
-              specPos = $(this).next('td').next('td').next('td').next('td').text()
+              #specPos = $(this).next('td').next('td').next('td').next('td').text()
               #payload += specNum + " | " + specName + " | " + specTeam + " | " + specPos
-              console.log(specNum)
+              console.log(specNum.trim())
               console.log(specName)
               console.log(specTeam)
               console.log(specPos)
