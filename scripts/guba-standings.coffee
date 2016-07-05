@@ -22,7 +22,6 @@ module.exports = (robot) ->
         res.send date
        
   robot.respond /topspecs hitters/i, (res) ->
-  
     host = http://www.thefibb.net/news/html/leagues/league_100_top_prospects.html;
     request host, (err, response, body) ->
       if not err and response.statusCode == 200
@@ -30,7 +29,7 @@ module.exports = (robot) ->
         payload = " "
         $('table .data').eq(0).children('tr').each (i, element) ->
           if (i == 0)
-            payload = "Top Hitting Specs\n"
+            payload += "Top Hitting Specs\n"
           else
             $(this).children('td .dr').each (j, element) ->
               specNum = $(this).text();
@@ -38,9 +37,13 @@ module.exports = (robot) ->
               specTeam = $(this).next('td').next('td').text()
               specPos = $(this).next('td').next('td').next('td').next('td').text()
               #payload += specNum + " | " + specName + " | " + specTeam + " | " + specPos
+              console.log(specNum)
+              console.log(specName)
+              console.log(specTeam)
+              console.log(specPos)
               payload += "Playerssssssss"
         
-        res.send payload
+        #res.send payload
               
   robot.respond /standings (.*)/i, (res) ->
     division = res.match[1] 
