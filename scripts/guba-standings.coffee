@@ -53,7 +53,7 @@ module.exports = (robot) ->
             teamOC = $(this).prev('td').text()
             payload += teamOC + " " + text + "\n"
             next1Num = $(this).parent().next('tr').next('td').text()
-            next1Name = $(this).parent().next('tr').next('td').next('td')text()
+            next1Name = $(this).parent().next('tr').next('td').next('td').text()
             payload += payload + "Next 3 picks\n"
             payload += payload + "Pick# " + next1Num + " : " + next1Name
             false
