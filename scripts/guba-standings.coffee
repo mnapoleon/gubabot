@@ -40,8 +40,8 @@ module.exports = (robot) ->
               false
         payload = "```" + payload + "```" 
         ###
-        payload = "```Draft is over```"
-        res.send payload
+    payload = "```Draft is over```"
+    res.send payload
   
   robot.respond /on clock/i, (res) ->
     ###host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
@@ -57,8 +57,8 @@ module.exports = (robot) ->
             false
         payload = "```" + payload + "```" 
         ###
-        payload = "```Draft is over```"
-        res.send payload
+    payload = "```Draft is over```"
+    res.send payload
       
   robot.respond /topspecs hitters/i, (res) ->
     host = 'http://www.thefibb.net/news/html/leagues/league_100_top_prospects.html';
