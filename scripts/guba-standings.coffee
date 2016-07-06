@@ -52,6 +52,21 @@ module.exports = (robot) ->
           if (text.substring(0,4) is 'Pick')
             teamOC = $(this).prev('td').text()
             payload += teamOC + " " + text + "\n"
+            false
+        payload = "```" + payload + "```" 
+        res.send payload
+
+  robot.respond /on clock test/i, (res) ->
+    host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
+    request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
+      if not err and response.statusCode == 200
+        $ = cheerio.load body
+        payload = "On clock "
+        $('td').each (i, element) ->
+          text = $(this).text()
+          if (text.substring(0,4) is 'Pick')
+            teamOC = $(this).prev('td').text()
+            payload += teamOC + " " + text + "\n"
             next1Num = $(this).parent().next('tr').next('td').text()
             next1Name = $(this).parent().next('tr').next('td').next('td').text()
             payload += payload + "Next 3 picks\n"
