@@ -69,8 +69,13 @@ module.exports = (robot) ->
             payload += teamOC + " " + text + "\n"
             next1Num = $(this).parent().next('tr').next('td').text()
             next1Name = $(this).parent().next('tr').next('td').next('td').text()
-            payload += payload + "Next 3 picks\n"
-            payload += payload + "Pick# " + next1Num + " : " + next1Name
+            next2Num = $(this).parent().next('tr').next('tr').next('td').text()
+            next2Name = $(this).parent().next('tr').next('tr').next('td').next('td').text()
+            next3Num = $(this).parent().next('tr').next('tr').next('tr').next('td').text()
+            next3Name = $(this).parent().next('tr').next('tr').next('tr').next('td').next('td').text()
+            payload += payload + "Pick# " + next1Num + " : " + next1Name + "\n"
+            payload += payload + "Pick# " + next2Num + " : " + next2Name + "\n"
+            payload += payload + "Pick# " + next3Num + " : " + next3Name + "\n"
             false
         payload = "```" + payload + "```" 
         res.send payload
