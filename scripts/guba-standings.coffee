@@ -24,7 +24,7 @@ module.exports = (robot) ->
         res.send date
        
   robot.respond /draft/i, (res) ->
-    host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
+    ###host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
@@ -39,10 +39,12 @@ module.exports = (robot) ->
               payload += pickNum + ": " + pickName + " by " + pickTeam
               false
         payload = "```" + payload + "```" 
+        ###
+        payload = "```Draft is over```"
         res.send payload
   
   robot.respond /on clock/i, (res) ->
-    host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
+    ###host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
@@ -54,30 +56,8 @@ module.exports = (robot) ->
             payload += teamOC + " " + text + "\n"
             false
         payload = "```" + payload + "```" 
-        res.send payload
-
-  robot.respond /on clock test/i, (res) ->
-    host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
-    request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
-      if not err and response.statusCode == 200
-        $ = cheerio.load body
-        payload = "On clock "
-        $('td').each (i, element) ->
-          text = $(this).text()
-          if (text.substring(0,4) is 'Pick')
-            teamOC = $(this).prev('td').text()
-            payload += teamOC + " " + text + "\n"
-            next1Num = $(this).parent('tr').next('tr').next('td').text()
-            next1Name = $(this).parent('tr').next('tr').next('td').next('td').text()
-            next2Num = $(this).parent('tr').next('tr').next('tr').next('td').text()
-            next2Name = $(this).parent('tr').next('tr').next('tr').next('td').next('td').text()
-            next3Num = $(this).parent('tr').next('tr').next('tr').next('tr').next('td').text()
-            next3Name = $(this).parent('tr').next('tr').next('tr').next('tr').next('td').next('td').text()
-            payload += payload + "Pick# " + next1Num + " : " + next1Name + "\n"
-            payload += payload + "Pick# " + next2Num + " : " + next2Name + "\n"
-            payload += payload + "Pick# " + next3Num + " : " + next3Name + "\n"
-            false
-        payload = "```" + payload + "```" 
+        ###
+        payload = "```Draft is over```"
         res.send payload
       
   robot.respond /topspecs hitters/i, (res) ->
