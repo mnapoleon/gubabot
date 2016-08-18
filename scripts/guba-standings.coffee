@@ -24,7 +24,7 @@ module.exports = (robot) ->
         res.send date
        
   robot.respond /draft/i, (res) ->
-    ###host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
+    host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
@@ -39,12 +39,12 @@ module.exports = (robot) ->
               payload += pickNum + ": " + pickName + " by " + pickTeam
               false
         payload = "```" + payload + "```" 
-        ###
-    payload = "```Draft is over```"
+
+    ###payload = "```Draft is over```"###
     res.send payload
   
   robot.respond /on clock/i, (res) ->
-    ###host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
+    host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
@@ -57,7 +57,7 @@ module.exports = (robot) ->
             false
         payload = "```" + payload + "```" 
         ###
-    payload = "```Draft is over```"
+    payload = "```Draft is over```"###
     res.send payload
       
   robot.respond /topspecs hitters/i, (res) ->
