@@ -41,6 +41,28 @@ module.exports = (robot) ->
         payload = "```" + payload + "```" 
         res.send payload
   
+  robot.respond /draft info/i, (res) ->
+    host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
+    request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
+      if not err and response.statusCode == 200
+        $ = cheerio.load body
+        payload = "Last pick "
+        $('td').each (i, element) ->
+          text = $(this).text()
+          if (text.substring(0,4) is 'Pick')
+            $(this).parent().prev('tr').children('td').each (i, element) ->
+              pickNum = $(this).text()
+              pickTeam = $(this).next('td').text()
+              pickName = $(this).next('td').next('td').text()
+              payload += pickNum + ": " + pickName + " by " + pickTeam
+              payload += "; "
+              teamOC = $(this).prev('td').text()
+              payload += teamOC + " on the clock," + text = $(this).text()
+              false
+        payload = "```" + payload + "```" 
+        res.send payload
+  
+  
   robot.respond /on clock/i, (res) ->
     host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
