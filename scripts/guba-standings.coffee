@@ -39,8 +39,6 @@ module.exports = (robot) ->
               payload += pickNum + ": " + pickName + " by " + pickTeam
               false
         payload = "```" + payload + "```" 
-
-    ###payload = "```Draft is over```"###
     res.send payload
   
   robot.respond /on clock/i, (res) ->
@@ -56,8 +54,6 @@ module.exports = (robot) ->
             payload += teamOC + " " + text + "\n"
             false
         payload = "```" + payload + "```" 
-        ###
-    payload = "```Draft is over```"###
     res.send payload
       
   robot.respond /topspecs hitters/i, (res) ->
