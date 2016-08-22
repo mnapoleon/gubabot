@@ -5,7 +5,7 @@
 #   thegubabot standings <division> - Displays standings for that division.  Division names are east, central, west, latino, euro, fareast and mbbawc or fibbwc for wildcard standings? Example 'standings fibbwc'
 #   thegubabot topspecs hitters - will return hitters from Top 100 Prospects
 #   thegubabot topspecs pitchers - will return pitchers from Top 100 Prospects
-#    thegubabot draft - returns number-name-team of last drafted player
+#    thegubabot draft - returns number-name-team of last drafted player and who is on the clock
 # Notes:
 #   These commands are grabbed from comment blocks at the top of each file.
 
@@ -22,7 +22,7 @@ module.exports = (robot) ->
         $ = cheerio.load body
         date = $('th[class=dl]').first().text()
         res.send date
-       
+###       
   robot.respond /draft/i, (res) ->
     host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
@@ -40,8 +40,8 @@ module.exports = (robot) ->
               false
         payload = "```" + payload + "```" 
         res.send payload
-  
-  robot.respond /dinfo/i, (res) ->
+###  
+  robot.respond /draft/i, (res) ->
     host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
       if not err and response.statusCode == 200
@@ -63,7 +63,7 @@ module.exports = (robot) ->
         payload = "```" + payload1 + payload2 + "```" 
         res.send payload
   
-  
+###  
   robot.respond /on clock/i, (res) ->
     host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
@@ -78,7 +78,7 @@ module.exports = (robot) ->
             false
         payload = "```" + payload + "```" 
         res.send payload
-      
+###      
   robot.respond /topspecs hitters/i, (res) ->
     host = 'http://www.thefibb.net/news/html/leagues/league_100_top_prospects.html';
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
