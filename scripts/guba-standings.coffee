@@ -57,7 +57,7 @@ module.exports = (robot) ->
               payload1 += pickNum + ": " + pickName + " by " + pickTeam
               payload1 += ";\n "
               teamOC = $(this).prev('td').text()
-              payload2 += teamOC + " on the clock," + $(this).text()
+              payload2 = teamOC + " on the clock," + $(this).text()
               false
         payload = "```" + payload1 + "```" 
         res.send payload
