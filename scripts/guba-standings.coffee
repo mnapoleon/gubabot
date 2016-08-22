@@ -47,6 +47,7 @@ module.exports = (robot) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
         payload1 = "Last pick "
+        payload2 = ""
         $('td').each (i, element) ->
           text = $(this).text()
           if (text.substring(0,4) is 'Pick')
