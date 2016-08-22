@@ -22,8 +22,8 @@ module.exports = (robot) ->
         $ = cheerio.load body
         date = $('th[class=dl]').first().text()
         res.send date
-###       
-  robot.respond /draft/i, (res) ->
+       
+  robot.respond /dold/i, (res) ->
     host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
       if not err and response.statusCode == 200
@@ -40,7 +40,7 @@ module.exports = (robot) ->
               false
         payload = "```" + payload + "```" 
         res.send payload
-###  
+ 
   robot.respond /draft/i, (res) ->
     host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
@@ -63,7 +63,6 @@ module.exports = (robot) ->
         payload = "```" + payload1 + payload2 + "```" 
         res.send payload
   
-###  
   robot.respond /on clock/i, (res) ->
     host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
@@ -78,7 +77,7 @@ module.exports = (robot) ->
             false
         payload = "```" + payload + "```" 
         res.send payload
-###      
+        
   robot.respond /topspecs hitters/i, (res) ->
     host = 'http://www.thefibb.net/news/html/leagues/league_100_top_prospects.html';
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
