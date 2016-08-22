@@ -46,7 +46,7 @@ module.exports = (robot) ->
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
-        payload = "Last pick "
+        payload1 = "Last pick "
         $('td').each (i, element) ->
           text = $(this).text()
           if (text.substring(0,4) is 'Pick')
@@ -54,12 +54,12 @@ module.exports = (robot) ->
               pickNum = $(this).text()
               pickTeam = $(this).next('td').text()
               pickName = $(this).next('td').next('td').text()
-              payload += pickNum + ": " + pickName + " by " + pickTeam
-              payload += ";\n "
+              payload1 += pickNum + ": " + pickName + " by " + pickTeam
+              payload1 += ";\n "
               teamOC = $(this).prev('td').text()
-              payload += teamOC + " on the clock," + $(this).text()
+              payload2 += teamOC + " on the clock," + $(this).text()
               false
-        payload = "```" + payload + "```" 
+        payload = "```" + payload1 + "```" 
         res.send payload
   
   
