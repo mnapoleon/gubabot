@@ -41,7 +41,7 @@ module.exports = (robot) ->
         payload = "```" + payload + "```" 
         res.send payload
   
-  robot.respond /draft info/i, (res) ->
+  robot.respond /dinfo/i, (res) ->
     host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
       if not err and response.statusCode == 200
@@ -55,7 +55,7 @@ module.exports = (robot) ->
               pickTeam = $(this).next('td').text()
               pickName = $(this).next('td').next('td').text()
               payload += pickNum + ": " + pickName + " by " + pickTeam
-              payload += "; "
+              payload += ";\n "
               teamOC = $(this).prev('td').text()
               payload += teamOC + " on the clock," + $(this).text()
               false
