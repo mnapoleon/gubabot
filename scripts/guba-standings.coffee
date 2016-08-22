@@ -51,15 +51,15 @@ module.exports = (robot) ->
         $('td').each (i, element) ->
           text = $(this).text()
           if (text.substring(0,4) is 'Pick')
+            teamOC = $(this).prev('td').text()
+            payload2 = teamOC + " on clock " + text + "\n"
             $(this).parent().prev('tr').children('td').each (i, element) ->
               pickNum = $(this).text()
               pickTeam = $(this).next('td').text()
               pickName = $(this).next('td').next('td').text()
               payload1 += pickNum + ": " + pickName + " by " + pickTeam
-              payload1 += ";\n "
+              payload1 += ";\n"
               false
-          teamOC = $(this).prev('td').text()
-          payload2 = teamOC + " on clock " + text + "\n"
         payload = "```" + payload1 + payload2 + "```" 
         res.send payload
   
