@@ -29,15 +29,11 @@ module.exports = (robot) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
         payload = "Team Exports\n"
-        $('font').each (i, element) ->
-          text = $(this).text()
-          if (text.substring(0,11) is 'Last Export')
-            console.log("***")
-            console.log($(this).parent().parent().prev().find('span').text()
-            console.log("*** PREF-TD" + $(this).prev('td'))
-            console.log("***")
-            teamName = $(this).prev('td').prev('td').text()
-            payload += teamName + " " + text
+        $('span').each (i, element) ->
+          teamName = $(this).text()
+          exportTime = $(this).find('font').text()
+        
+          payload += teamName + " " + exportTime
         payload = "```" + payload + "```"
         res.send payload
     
