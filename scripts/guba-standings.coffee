@@ -33,7 +33,7 @@ module.exports = (robot) ->
           text = $(this).text()
           if (text.substring(0,11) is 'Last Export')
             teamName1 = $(this).parent
-            console("***" + teamName1 + "***")
+            console.log("***" + teamName1 + "***")
             teamName = $(this).parent().prev('tr').next('td').text()
             payload += teamName + " " + text
             false
