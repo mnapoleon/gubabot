@@ -22,7 +22,22 @@ module.exports = (robot) ->
         $ = cheerio.load body
         date = $('th[class=dl]').first().text()
         res.send date
-       
+        
+  robot.respond /exports/i, (res) ->
+    host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=export'
+    request host, (err, response, body) ->
+      if not err and response.statusCode == 200
+        $ = cheerio.load body
+        payload = "Team Exports\n"
+        $('td').each (i, element) ->
+          text = $(this).text()
+          if (text.substring(0,11) is 'Last Export')
+            teamName = $(this).prev('td').text()
+            payload += teamName + " " + text
+            false
+        payload = "```" + payload + "```"
+        res.send payload
+    
   robot.respond /dold/i, (res) ->
     host = 'http://www.thefibb.net/cgi-bin/ootpou.pl?page=draftPicks'
     request.get {uri: host, encoding: 'binary'}, (err, response, body) ->
