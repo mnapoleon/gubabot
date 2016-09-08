@@ -31,13 +31,14 @@ module.exports = (robot) ->
         payload = "Team Exports\n"
         $('font').each (i, element) ->
           text = $(this).text()
+          console.log(text)
           if (text.substring(0,11) is 'Last Export')
             console.log("***")
             console.log($(this))
-            console.log($(this).prev('td'))
+            console.log("*** PREF-TD" + $(this).prev('td'))
+            console.log("***")
             teamName = $(this).prev('td').prev('td').text()
             payload += teamName + " " + text
-            false
         payload = "```" + payload + "```"
         res.send payload
     
