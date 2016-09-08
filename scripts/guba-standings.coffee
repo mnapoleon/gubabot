@@ -33,7 +33,7 @@ module.exports = (robot) ->
           teamName = $(this).text()
           exportTime = $(this).parent().parent().parent().find('font').text()
         
-          payload += teamName + " " + exportTime
+          payload += teamName + " " + exportTime + "\n"
         payload = "```" + payload + "```"
         res.send payload
     
