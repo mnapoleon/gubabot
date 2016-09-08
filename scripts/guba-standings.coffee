@@ -31,7 +31,7 @@ module.exports = (robot) ->
         payload = "Team Exports\n"
         $('span').each (i, element) ->
           teamName = $(this).text()
-          exportTime = $(this).find('font').text()
+          exportTime = $(this).parent().parent().parent().find('font').text()
         
           payload += teamName + " " + exportTime
         payload = "```" + payload + "```"
