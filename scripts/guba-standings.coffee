@@ -29,7 +29,7 @@ module.exports = (robot) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
         payload = "Team Exports\n"
-        $('td').each (i, element) ->
+        $('font').each (i, element) ->
           text = $(this).text()
           if (text.substring(0,11) is 'Last Export')
             console.log("***")
