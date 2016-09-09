@@ -28,7 +28,7 @@ module.exports = (robot) ->
 
     search_host = 'http://www.thefibb.net/news/html/leagues/league_100_players_' + search_letter + '.html'
     console.log(search_host)
-    reqeust search_host, (err, response, body) ->
+    request search_host, (err, response, body) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
         $('td .dl').each (i, element) ->
