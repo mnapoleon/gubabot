@@ -27,13 +27,14 @@ module.exports = (robot) ->
     console.log("Search_letter: " + search_letter)
     
     search_host = 'http://www.thefibb.net/news/html/leagues/league_100_players_' + search_letter + '.html'
+    console.log(search_host)
     reqeust search_host, (err, response, body) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
-        $('td .dl').each (i, element) ->
+        $('a').each (i, element) ->
           text = $(this).text()
           console.log(text)
-            
+          false  
     
     
   robot.respond /test trans/i, (res) ->
