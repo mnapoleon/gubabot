@@ -17,7 +17,7 @@ module.exports = (robot) ->
 
   robot.respond /scout (.*)/i, (res) ->
     name = res.match[1]
-    name = name.toLowerCase
+    name = name.toLowerCase()
     names = name.split "_"
     first_name = names[0]
     last_name = names[1]
