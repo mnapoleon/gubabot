@@ -23,26 +23,24 @@ module.exports = (robot) ->
     last_name = names[1]
     search_letter = last_name[0]
     search_term = last_name + ", " + first_name
-    console.log("First: " + first_name + " Last: " + last_name)
-    console.log("Search_letter: " + search_letter)
-    console.log("Search term: " + search_term)
 
     search_host = 'http://www.thefibb.net/news/html/leagues/league_100_players_' + search_letter + '.html'
-    console.log(search_host)
     request search_host, (err, response, body) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
+        payload = ""
         $('a').each (i, element) ->
           text = $(this).text()
           if (text.toLowerCase() is search_term)
-            testString = "LLLLL " + text + " LLLLL"
-            console.log(testString)
             player_link = $(this).attr('href')
             strs1 = player_link.split "_"
             strs2 = strs1[1].split "."
             player_id = strs2[0]
             console.log(player_id)
-
+            player_link = 'http://www.thefibb.net/news/html/players/player_' + player_id + '.html'
+            payload = player_link
+        res.send payload
+            
     
   robot.respond /test trans/i, (res) ->
     host = 'http://www.thefibb.net/news/html/leagues/league_100_transactions_0_0.html'
