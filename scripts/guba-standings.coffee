@@ -20,8 +20,8 @@ module.exports = (robot) ->
     name = name.toLowerCase()
     names = name.split "_"
     first_name = names[0]
-    last_name = names[1..]
-    console.log(last_name)
+    last_names = names[1..]
+    last_name = last_name + name for name in last_names 
     search_letter = last_name[0]
     search_term = last_name + ", " + first_name
     
