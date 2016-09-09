@@ -21,7 +21,9 @@ module.exports = (robot) ->
     names = name.split "_"
     first_name = names[0]
     last_names = names[1..]
-    last_name = last_name + name for name in last_names 
+    last_name = ""
+    last_name = last_name + name for name in last_names
+    console.log(last_name)
     search_letter = last_name[0]
     search_term = last_name + ", " + first_name
     
