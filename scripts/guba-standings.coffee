@@ -32,9 +32,8 @@ module.exports = (robot) ->
         $ = cheerio.load body
         $('td .dl').each (i, element) ->
           text = $(this).text()
-          if (text.toLowerCase() is search_term) ->
-            console.log("Found " + search_term)
-    
+          console.log(text)
+            
     
     
   robot.respond /test trans/i, (res) ->
