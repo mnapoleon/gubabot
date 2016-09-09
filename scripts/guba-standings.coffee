@@ -17,6 +17,7 @@ unorm = require 'unorm'
 module.exports = (robot) ->
   
   robot.respond /scout (.*)/i, (res) ->
+    
     name = res.match[1]
     name = name.toLowerCase()
     names = name.split "_"
@@ -32,7 +33,11 @@ module.exports = (robot) ->
     search_term = last_name + ", " + first_name
     
     search_host = 'http://www.thefibb.net/news/html/leagues/league_100_players_' + search_letter + '.html'
-    request search_host, (err, response, body) ->
+    auth = 
+      host: search_host
+      encoding: 'ascii'
+      
+    request auth, (err, response, body) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
         payload = ""
