@@ -25,18 +25,17 @@ module.exports = (robot) ->
     search_term = last_name + ", " + first_name
     console.log("First: " + first_name + " Last: " + last_name)
     console.log("Search_letter: " + search_letter)
-    
+
     search_host = 'http://www.thefibb.net/news/html/leagues/league_100_players_' + search_letter + '.html'
     console.log(search_host)
     reqeust search_host, (err, response, body) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
-        $('a').each (i, element) ->
+        $('td .dl').each (i, element) ->
           text = $(this).text()
           if (text is 'Navarro, Marcos')
             console.log(text)
-            false  
-    
+
     
   robot.respond /test trans/i, (res) ->
     host = 'http://www.thefibb.net/news/html/leagues/league_100_transactions_0_0.html'
