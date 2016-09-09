@@ -33,8 +33,9 @@ module.exports = (robot) ->
         $ = cheerio.load body
         $('a').each (i, element) ->
           text = $(this).text()
-          console.log(text)
-          false  
+          if (text is 'Navarro, Marcos') ->
+            console.log(text)
+            false  
     
     
   robot.respond /test trans/i, (res) ->
