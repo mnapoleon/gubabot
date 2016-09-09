@@ -33,19 +33,13 @@ module.exports = (robot) ->
     search_term = last_name + ", " + first_name
     
     search_host = 'http://www.thefibb.net/news/html/leagues/league_100_players_' + search_letter + '.html'
-    auth = 
-      host: search_host
-      encoding: 'ascii'
-      
-    request auth, (err, response, body) ->
+
+    request search_host, (err, response, body) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
         payload = ""
         $('a').each (i, element) ->
           text = $(this).text()
-          #newText = unorm.nfd(text)
-          #console.log(newText)
-          console.log(text)
           if (text.toLowerCase() is search_term)
             player_link = $(this).attr('href')
             strs1 = player_link.split "_"
