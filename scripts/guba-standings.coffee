@@ -31,7 +31,7 @@ module.exports = (robot) ->
     request search_host, (err, response, body) ->
       if not err and response.statusCode == 200
         $ = cheerio.load body
-        $('td .dl').each (i, element) ->
+        $('a').each (i, element) ->
           text = $(this).text()
           if (text is 'Navarro, Marcos')
             testString = "LLLLL " + text + " LLLLL"
