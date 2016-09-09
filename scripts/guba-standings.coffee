@@ -37,6 +37,8 @@ module.exports = (robot) ->
           if (text.toLowerCase() is search_term)
             testString = "LLLLL " + text + " LLLLL"
             console.log(testString)
+            player_link = $(this).attr('href')
+            console.log(player_link)
 
     
   robot.respond /test trans/i, (res) ->
