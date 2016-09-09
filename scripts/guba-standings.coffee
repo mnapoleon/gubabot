@@ -27,6 +27,7 @@ module.exports = (robot) ->
     console.log(last_name)
     search_letter = last_name[0]
     search_term = last_name + ", " + first_name
+    console.log(search_term)
     
     search_host = 'http://www.thefibb.net/news/html/leagues/league_100_players_' + search_letter + '.html'
     request search_host, (err, response, body) ->
