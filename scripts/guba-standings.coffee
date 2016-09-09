@@ -23,7 +23,7 @@ module.exports = (robot) ->
     last_name = names[1]
     search_letter = last_name[0]
     search_term = last_name + ", " + first_name
-
+    
     search_host = 'http://www.thefibb.net/news/html/leagues/league_100_players_' + search_letter + '.html'
     request search_host, (err, response, body) ->
       if not err and response.statusCode == 200
@@ -38,7 +38,7 @@ module.exports = (robot) ->
             player_id = strs2[0]
             console.log(player_id)
             player_link = 'http://www.thefibb.net/news/html/players/player_' + player_id + '.html'
-            payload = player_link
+            payload = search_term + ': ' + player_link
         res.send payload
             
     
