@@ -33,7 +33,7 @@ module.exports = (robot) ->
         $ = cheerio.load body
         $('a').each (i, element) ->
           text = $(this).text()
-          if (text is 'Navarro, Marcos')
+          if (text is search_term)
             testString = "LLLLL " + text + " LLLLL"
             console.log(testString)
 
