@@ -22,7 +22,7 @@ module.exports = (robot) ->
     first_name = names[0]
     last_names = names[1..]
     last_name = ""
-    for i in [0..last_names.length]
+    for i in [0..last_names.length-1]
       last_name = last_name + last_names[i] 
       if i < last_names.length - 1
         last_name = last_name + " "
