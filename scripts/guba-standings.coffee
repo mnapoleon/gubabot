@@ -43,9 +43,10 @@ module.exports = (robot) ->
         payload = ""
         $('a').each (i, element) ->
           text = $(this).text()
-          newText = unorm.nfd(text)
-          console.log(newText)
-          if (newText.toLowerCase() is search_term)
+          #newText = unorm.nfd(text)
+          #console.log(newText)
+          console.log(text)
+          if (text.toLowerCase() is search_term)
             player_link = $(this).attr('href')
             strs1 = player_link.split "_"
             strs2 = strs1[1].split "."
