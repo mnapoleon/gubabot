@@ -26,12 +26,9 @@ module.exports = (robot) ->
       last_name = last_name + last_names[i] 
       if i < last_names.length - 1
         last_name = last_name + " "
-    #last_name = last_name + name + " " for name in last_names
-    #last_name.trim()
-    console.log(last_name)
+
     search_letter = last_name[0]
     search_term = last_name + ", " + first_name
-    console.log(search_term)
     
     search_host = 'http://www.thefibb.net/news/html/leagues/league_100_players_' + search_letter + '.html'
     request search_host, (err, response, body) ->
