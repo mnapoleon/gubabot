@@ -15,6 +15,16 @@ cheerio = require 'cheerio'
 
 module.exports = (robot) ->
 
+  robot.respond /scout (.*)/i, (res) ->
+    name = res.match[1]
+    name = name.toLowerCase
+    names = name.split "_"
+    first_name = names[0]
+    last_name = names[1]
+    console.log("First: " + first_name + " Last: " + last_name)
+    
+    
+    
   robot.respond /test trans/i, (res) ->
     host = 'http://www.thefibb.net/news/html/leagues/league_100_transactions_0_0.html'
     request host, (err, response, body) ->
