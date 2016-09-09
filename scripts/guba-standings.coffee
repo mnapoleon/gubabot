@@ -14,7 +14,7 @@ cheerio = require 'cheerio'
 #teamInfo = require './teamInfo'
 
 module.exports = (robot) ->
-
+  
   robot.respond /scout (.*)/i, (res) ->
     name = res.match[1]
     name = name.toLowerCase()
@@ -37,6 +37,7 @@ module.exports = (robot) ->
         payload = ""
         $('a').each (i, element) ->
           text = $(this).text()
+          console.log(text.normalize('NFKD'))
           if (text.toLowerCase() is search_term)
             player_link = $(this).attr('href')
             strs1 = player_link.split "_"
