@@ -22,8 +22,18 @@ module.exports = (robot) ->
     first_name = names[0]
     last_name = names[1]
     search_letter = last_name[0]
+    search_term = last_name + ", " + first_name
     console.log("First: " + first_name + " Last: " + last_name)
     console.log("Search_letter: " + search_letter)
+    
+    search_host = 'http://www.thefibb.net/news/html/leagues/league_100_players_' + search_letter + '.html'
+    reqeust host, (err, response, body) ->
+      if not err and response.statusCode == 200
+        $ = cheerio.load body
+        $('td .dl').each (i, element) ->
+          text = $(this).text()
+          if (text.toLowerCase() is search_term) ->
+            console.log("Found " + search_term)
     
     
     
