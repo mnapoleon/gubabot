@@ -34,7 +34,7 @@ module.exports = (robot) ->
         $('td .dl').each (i, element) ->
           text = $(this).text()
           if (text is 'Navarro, Marcos')
-            console.log(text)
+            console.log("***" + text * "****")
 
     
   robot.respond /test trans/i, (res) ->
