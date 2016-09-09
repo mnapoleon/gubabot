@@ -37,7 +37,8 @@ module.exports = (robot) ->
         $ = cheerio.load body
         payload = ""
         $('a').each (i, element) ->
-          newText = unorm.nfkd(text)
+          text = $(this).text()
+          newText = unorm.nfd(text)
           if (newText.toLowerCase() is search_term)
             player_link = $(this).attr('href')
             strs1 = player_link.split "_"
