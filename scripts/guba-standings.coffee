@@ -38,7 +38,10 @@ module.exports = (robot) ->
             testString = "LLLLL " + text + " LLLLL"
             console.log(testString)
             player_link = $(this).attr('href')
-            console.log(player_link)
+            strs1 = player_link.split "_"
+            strs2 = strs1[1].split "."
+            player_id = strs2[0]
+            console.log(player_id)
 
     
   robot.respond /test trans/i, (res) ->
