@@ -34,7 +34,7 @@ module.exports = (robot) ->
         $('td .dl').each (i, element) ->
           text = $(this).text()
           if (text is 'Navarro, Marcos')
-            testString = "LLLLL " + test + " LLLLL"
+            testString = "LLLLL " + text + " LLLLL"
             console.log(testString)
 
     
