@@ -25,6 +25,7 @@ module.exports = (robot) ->
     search_term = last_name + ", " + first_name
     console.log("First: " + first_name + " Last: " + last_name)
     console.log("Search_letter: " + search_letter)
+    console.log("Search term: " + search_term)
 
     search_host = 'http://www.thefibb.net/news/html/leagues/league_100_players_' + search_letter + '.html'
     console.log(search_host)
@@ -33,7 +34,7 @@ module.exports = (robot) ->
         $ = cheerio.load body
         $('a').each (i, element) ->
           text = $(this).text()
-          if (text is search_term)
+          if (text.toLowerCase() is search_term)
             testString = "LLLLL " + text + " LLLLL"
             console.log(testString)
 
