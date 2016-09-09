@@ -11,6 +11,7 @@
 
 request = require 'request'
 cheerio = require 'cheerio'
+unorm = require 'unorm'
 #teamInfo = require './teamInfo'
 
 module.exports = (robot) ->
@@ -37,7 +38,7 @@ module.exports = (robot) ->
         payload = ""
         $('a').each (i, element) ->
           text = $(this).text()
-          console.log(text.normalize('NFKD'))
+          console.log(unorm.nfkd(text))
           if (text.toLowerCase() is search_term)
             player_link = $(this).attr('href')
             strs1 = player_link.split "_"
