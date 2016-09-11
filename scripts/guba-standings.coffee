@@ -16,6 +16,51 @@ unorm = require 'unorm'
 
 module.exports = (robot) ->
   
+  robot.respond /scout1 (.*)/i, (res) ->
+    
+    name = res.match[1]
+    name = name.toLowerCase()
+    names = name.split "_"
+    first_name = names[0]
+    last_names = names[1..]
+    last_name = ""
+    for i in [0..last_names.length-1]
+      last_name = last_name + last_names[i] 
+      if i < last_names.length - 1
+        last_name = last_name + " "
+
+    search_letter = last_name[0]
+    search_term = last_name + ", " + first_name
+    
+    search_host = 'http://www.thefibb.net/news/html/leagues/league_100_players_' + search_letter + '.html'
+
+    request search_host, (err, response, body) ->
+      if not err and response.statusCode == 200
+        $ = cheerio.load body
+        payload = ""
+        player_id = 0
+        $('a').each (i, element) ->
+          text = $(this).text()
+          if (text.toLowerCase() is search_term)
+            player_link = $(this).attr('href')
+            strs1 = player_link.split "_"
+            strs2 = strs1[1].split "."
+            player_id = strs2[0]
+            #console.log(player_id)
+            #player_link = 'http://www.thefibb.net/news/html/players/player_' + player_id + '.html'
+            #payload = search_term + ': ' + player_link
+            false
+        
+        player_link = 'http://www.thefibb.net/news/html/players/player_' + player_id + '.html'
+        request player_link, (err, response, body) ->
+          $ = cheerio.load body
+          #get position
+          player_title = $('td .reptitle').text()
+          player_pos = player_title.substring(0)
+          console.log("Pos: " + player_pos)
+          
+        res.send payload
+  
   robot.respond /scout (.*)/i, (res) ->
     
     name = res.match[1]
