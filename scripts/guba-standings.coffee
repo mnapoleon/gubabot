@@ -69,11 +69,12 @@ module.exports = (robot) ->
                 stuff_vR = $(this).next().next().next().next().next().text()
                 stuff_potentail = $(this).next().next().next().next().next().next().text()
                 console.log(stuff_overall + "/" + stuff_potentail + "/" + "Splits (l/R) " + stuff_vL + "/" + stuff_vR)
+                payload = stuff_overall + "/" + stuff_potentail + "/" + "Splits (l/R) " + stuff_vL + "/" + stuff_vR
           else
             #is not pitcher
             payload = 'FEATURE NOT IMPLEMENTED YET'
           
-          
+        payload = "```" + payload + "```" 
         res.send payload
   
   robot.respond /scout (.*)/i, (res) ->
