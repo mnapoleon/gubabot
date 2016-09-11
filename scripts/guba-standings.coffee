@@ -56,7 +56,7 @@ module.exports = (robot) ->
           $ = cheerio.load body
           #get position
           player_title = $('td .reptitle').text()
-          player_pos = player_title.substring(0)
+          player_pos = player_title.substring(0,1)
           console.log("Pos: " + player_pos)
           
         res.send payload
