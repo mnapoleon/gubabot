@@ -46,9 +46,6 @@ module.exports = (robot) ->
             strs1 = player_link.split "_"
             strs2 = strs1[1].split "."
             player_id = strs2[0]
-            #console.log(player_id)
-            #player_link = 'http://www.thefibb.net/news/html/players/player_' + player_id + '.html'
-            #payload = search_term + ': ' + player_link
             false
         
         player_link = 'http://www.thefibb.net/news/html/players/player_' + player_id + '.html'
@@ -58,6 +55,22 @@ module.exports = (robot) ->
           player_title = $('td .reptitle').text()
           player_pos = player_title.substring(0,1)
           console.log("Pos: " + player_pos)
+          
+          if player_pos is 'P'
+            #is pitcher
+            payload = 'FEATURE NOT IMPLEMENTED YET'
+            $('td').each(i, element) ->
+              text = $(this).text()
+              if (text is 'Stuff')
+                stuff_overall = $(this).next().next().next().text()
+                stuff_vL = $(this).next().next().next().next().text()
+                stuff_vR = $(this).next().next().next().next().next().text()
+                stuff_potentail = $(this).next().next().next().next().next().next().text()
+                console.log (stuff_overall + "/" stuff_potentail + "/" + "Splits (l/R) " + stuff_vL + "/" + stuff_vR)
+          else
+            #is not pitcher
+            payload = 'FEATURE NOT IMPLEMENTED YET'
+          
           
         res.send payload
   
