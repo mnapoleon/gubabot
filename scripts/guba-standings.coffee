@@ -59,7 +59,7 @@ module.exports = (robot) ->
           if player_pos is 'P'
             #is pitcher
             payload = 'FEATURE NOT IMPLEMENTED YET'
-            $('td').each(i, element) ->
+            $('td').each(j, element1) ->
               text = $(this).text()
               if (text is 'Stuff')
                 console.log ("*** FOUND STUFF ***")
