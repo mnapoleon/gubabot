@@ -62,6 +62,7 @@ module.exports = (robot) ->
             $('td').each(i, element) ->
               text = $(this).text()
               if (text is 'Stuff')
+                console.log ("*** FOUND STUFF ***")
                 stuff_overall = $(this).next().next().next().text()
                 stuff_vL = $(this).next().next().next().next().text()
                 stuff_vR = $(this).next().next().next().next().next().text()
