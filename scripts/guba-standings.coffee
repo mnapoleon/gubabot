@@ -19,6 +19,7 @@ module.exports = (robot) ->
   robot.respond /scout1 (.*)/i, (res) ->
     
     level = res.match[2]
+    console.log("LEVEL is :" + level) 
     name = res.match[1]
     name = name.toLowerCase()
     names = name.split "_"
