@@ -92,12 +92,12 @@ module.exports = (robot) ->
   
   robot.respond /scout (.*)/i, (res) ->
 
-    level = res.match[2]
-    console.log("LEVEL is :" + level) 
-    name = res.match[1]
-    console.log("NAME is " + name)
-    name = name.toLowerCase()
-    names = name.split "_"
+    thedata = res.match[1]
+    thedata = thedata.toLowerCase()
+    stuff = thedata.split " "
+    level = stuff[1]
+    
+    names = stuff.split "_"
     first_name = names[0]
     last_names = names[1..]
     last_name = ""
@@ -109,15 +109,15 @@ module.exports = (robot) ->
     search_letter = last_name[0]
     search_term = last_name + ", " + first_name
     
-    if level == 'R'
+    if level == 'r'
       search_host = 'http://www.thefibb.net/news/html/leagues/league_105_players_' + search_letter + '.html'
-    else if level == 'SA'
+    else if level == 'sa'
       search_host = 'http://www.thefibb.net/news/html/leagues/league_104_players_' + search_letter + '.html'
-    else if level == 'A'
+    else if level == 'a'
       search_host = 'http://www.thefibb.net/news/html/leagues/league_103_players_' + search_letter + '.html'
-    else if level == 'AA'
+    else if level == 'aa'
       search_host = 'http://www.thefibb.net/news/html/leagues/league_102_players_' + search_letter + '.html'
-    else if level == 'AAA'
+    else if level == 'aaa'
       search_host = 'http://www.thefibb.net/news/html/leagues/league_101_players_' + search_letter + '.html'
     else
       search_host = 'http://www.thefibb.net/news/html/leagues/league_100_players_' + search_letter + '.html'
