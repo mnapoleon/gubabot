@@ -97,7 +97,7 @@ module.exports = (robot) ->
     stuff = thedata.split " "
     level = stuff[1]
     
-    names = stuff.split "_"
+    names = stuff[0].split "_"
     first_name = names[0]
     last_names = names[1..]
     last_name = ""
