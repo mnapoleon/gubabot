@@ -18,6 +18,7 @@ module.exports = (robot) ->
   
   robot.respond /scout1 (.*)/i, (res) ->
     
+    level = res.match[2]
     name = res.match[1]
     name = name.toLowerCase()
     names = name.split "_"
@@ -32,7 +33,18 @@ module.exports = (robot) ->
     search_letter = last_name[0]
     search_term = last_name + ", " + first_name
     
-    search_host = 'http://www.thefibb.net/news/html/leagues/league_100_players_' + search_letter + '.html'
+    if (level is 'R')
+      search_host = 'http://www.thefibb.net/news/html/leagues/league_105_players_' + search_letter + '.html'
+    else if (level is 'SA')
+      search_host = 'http://www.thefibb.net/news/html/leagues/league_104_players_' + search_letter + '.html'
+    else if (level is 'A')
+      search_host = 'http://www.thefibb.net/news/html/leagues/league_103_players_' + search_letter + '.html'
+    else if (level is 'AA')
+      search_host = 'http://www.thefibb.net/news/html/leagues/league_102_players_' + search_letter + '.html'
+    else if (level is 'AAA')
+      search_host = 'http://www.thefibb.net/news/html/leagues/league_101_players_' + search_letter + '.html'
+    else
+      search_host = 'http://www.thefibb.net/news/html/leagues/league_100_players_' + search_letter + '.html'
 
     request search_host, (err, response, body) ->
       if not err and response.statusCode == 200
