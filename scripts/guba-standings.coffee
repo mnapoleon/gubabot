@@ -91,11 +91,11 @@ module.exports = (robot) ->
         res.send payload
   
   robot.respond /scout (.*)/i, (res) ->
-    
-    console.log("RES : " + res)
+
     level = res.match[2]
     console.log("LEVEL is :" + level) 
     name = res.match[1]
+    console.log("NAME is " + name)
     name = name.toLowerCase()
     names = name.split "_"
     first_name = names[0]
