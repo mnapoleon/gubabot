@@ -92,6 +92,7 @@ module.exports = (robot) ->
   
   robot.respond /scout (.*)/i, (res) ->
     
+    console.log("RES : " + res)
     level = res.match[2]
     console.log("LEVEL is :" + level) 
     name = res.match[1]
