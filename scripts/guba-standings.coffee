@@ -394,18 +394,10 @@ module.exports = (robot) ->
     search_letter = last_name[0]
     search_term = last_name + ", " + first_name
     
-    if level == 'r'
-      search_host = 'http://www.thefibb.net/news/html/leagues/league_105_players_' + search_letter + '.html'
-    else if level == 'sa'
-      search_host = 'http://www.thefibb.net/news/html/leagues/league_104_players_' + search_letter + '.html'
-    else if level == 'a'
-      search_host = 'http://www.thefibb.net/news/html/leagues/league_103_players_' + search_letter + '.html'
-    else if level == 'aa'
-      search_host = 'http://www.thefibb.net/news/html/leagues/league_102_players_' + search_letter + '.html'
-    else if level == 'aaa'
-      search_host = 'http://www.thefibb.net/news/html/leagues/league_101_players_' + search_letter + '.html'
-    else
+    if level == 'acb'
       search_host = 'http://www.atlanticcoastbaseball.net/html/leagues/league_100_players_' + search_letter + '.html'
+    else if level == 'rcb'
+      search_host = 'http://www.atlanticcoastbaseball.net/html/leagues/league_106_players_' + search_letter + '.html'
 
     request search_host, (err, response, body) ->
       if not err and response.statusCode == 200
