@@ -375,6 +375,54 @@ module.exports = (robot) ->
         payload = "```" + payload + "```"
         res.send payload
 
+  robot.respond /scoutacb (.*)/i, (res) ->
+
+    thedata = res.match[1]
+    thedata = thedata.toLowerCase()
+    stuff = thedata.split " "
+    level = stuff[1]
+    
+    names = stuff[0].split "_"
+    first_name = names[0]
+    last_names = names[1..]
+    last_name = ""
+    for i in [0..last_names.length-1]
+      last_name = last_name + last_names[i] 
+      if i < last_names.length - 1
+        last_name = last_name + " "
+
+    search_letter = last_name[0]
+    search_term = last_name + ", " + first_name
+    
+    if level == 'r'
+      search_host = 'http://www.thefibb.net/news/html/leagues/league_105_players_' + search_letter + '.html'
+    else if level == 'sa'
+      search_host = 'http://www.thefibb.net/news/html/leagues/league_104_players_' + search_letter + '.html'
+    else if level == 'a'
+      search_host = 'http://www.thefibb.net/news/html/leagues/league_103_players_' + search_letter + '.html'
+    else if level == 'aa'
+      search_host = 'http://www.thefibb.net/news/html/leagues/league_102_players_' + search_letter + '.html'
+    else if level == 'aaa'
+      search_host = 'http://www.thefibb.net/news/html/leagues/league_101_players_' + search_letter + '.html'
+    else
+      search_host = 'http://www.atlanticcoastbaseball.net/html/leagues/league_100_players_' + search_letter + '.html'
+
+    request search_host, (err, response, body) ->
+      if not err and response.statusCode == 200
+        $ = cheerio.load body
+        payload = ""
+        $('a').each (i, element) ->
+          text = $(this).text()
+          if (text.toLowerCase() is search_term)
+            player_link = $(this).attr('href')
+            strs1 = player_link.split "_"
+            strs2 = strs1[1].split "."
+            player_id = strs2[0]
+            console.log(player_id)
+            player_link = 'http://www.atlanticcoastbaseball.net/html/players/player_' + player_id + '.html'
+            payload = search_term + ': ' + player_link
+        res.send payload
+
 padString = (str, length) ->
 
     str = str + Array(length + 1 - str.length).join(' ')
