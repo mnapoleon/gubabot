@@ -287,20 +287,8 @@ module.exports = (robot) ->
                 pct[teamName] = $(this).next('td').next('td').next('td').text()
                 gb[teamName] = $(this).next('td').next('td').next('td').next('td').text()
                 payload += padString(teamName, 25) + " | " + padString(wins[teamName],5) + padString(loses[teamName],5) + padString(pct[teamName], 6) + " " + padString(gb[teamName], 5) + "\n"
-        if divLC is 'central'
-          $('table .data').eq(1).children('tr').each (i, element) ->
-            if (i == 0)
-              payload += "MBBA Central Standings\n"
-            else 
-              $(this).children('td .dl').each (j, element) ->
-                teamName = $(this).text();
-                wins[teamName] = $(this).next('td').text()
-                loses[teamName] = $(this).next('td').next('td').text()
-                pct[teamName] = $(this).next('td').next('td').next('td').text()
-                gb[teamName] = $(this).next('td').next('td').next('td').next('td').text()
-                payload += padString(teamName, 25) + " | " + padString(wins[teamName],5) + padString(loses[teamName],5) + padString(pct[teamName], 6) + " " + padString(gb[teamName], 5) + "\n"
         if divLC is 'west'
-          $('table .data').eq(2).children('tr').each (i, element) ->
+          $('table .data').eq(1).children('tr').each (i, element) ->
             if (i == 0)
               payload += "MBBA West Standings\n"
             else 
@@ -312,7 +300,7 @@ module.exports = (robot) ->
                 gb[teamName] = $(this).next('td').next('td').next('td').next('td').text()
                 payload += padString(teamName, 25) + " | " + padString(wins[teamName],5) + padString(loses[teamName],5) + padString(pct[teamName], 6) + " " + padString(gb[teamName], 5) + "\n"
         if divLC is 'mbbawc'
-          $('table .data').eq(3).children('tr').each (i, element) ->
+          $('table .data').eq(2).children('tr').each (i, element) ->
             if (i == 0)
               payload += "MBBA Wildcard Standings\n"
             else 
@@ -323,10 +311,22 @@ module.exports = (robot) ->
                 pct[teamName] = $(this).next('td').next('td').next('td').text()
                 gb[teamName] = $(this).next('td').next('td').next('td').next('td').text()
                 payload += padString(teamName, 25) + " | " + padString(wins[teamName],5) + padString(loses[teamName],5) + padString(pct[teamName], 6) + " " + padString(gb[teamName], 5) + "\n"
-        if divLC is 'latino'
+        if divLC is 'north'
+          $('table .data').eq(3).children('tr').each (i, element) ->
+            if (i == 0)
+              payload += "FIBB North Standings\n"
+            else 
+              $(this).children('td .dl').each (j, element) ->
+                teamName = $(this).text();
+                wins[teamName] = $(this).next('td').text()
+                loses[teamName] = $(this).next('td').next('td').text()
+                pct[teamName] = $(this).next('td').next('td').next('td').text()
+                gb[teamName] = $(this).next('td').next('td').next('td').next('td').text()
+                payload += padString(teamName, 25) + " | " + padString(wins[teamName],5) + padString(loses[teamName],5) + padString(pct[teamName], 6) + " " + padString(gb[teamName], 5) + "\n"
+        if divLC is 'south'
           $('table .data').eq(4).children('tr').each (i, element) ->
             if (i == 0)
-              payload += "FIBB Latino Standings\n"
+              payload += "FIBB South Standings\n"
             else 
              $(this).children('td .dl').each (j, element) ->
                 teamName = $(this).text();
@@ -335,32 +335,8 @@ module.exports = (robot) ->
                 pct[teamName] = $(this).next('td').next('td').next('td').text()
                 gb[teamName] = $(this).next('td').next('td').next('td').next('td').text()
                 payload += padString(teamName, 25) + " | " + padString(wins[teamName],5) + padString(loses[teamName],5) + padString(pct[teamName], 6) + " " + padString(gb[teamName], 5) + "\n"
-        if divLC is 'euro'
-          $('table .data').eq(5).children('tr').each (i, element) ->
-            if (i == 0)
-              payload += "FIBB Euro Standings\n"
-            else 
-              $(this).children('td .dl').each (j, element) ->
-                teamName = $(this).text();
-                wins[teamName] = $(this).next('td').text()
-                loses[teamName] = $(this).next('td').next('td').text()
-                pct[teamName] = $(this).next('td').next('td').next('td').text()
-                gb[teamName] = $(this).next('td').next('td').next('td').next('td').text()
-                payload += padString(teamName, 25) + " | " + padString(wins[teamName],5) + padString(loses[teamName],5) + padString(pct[teamName], 6) + " " + padString(gb[teamName], 5) + "\n"
-        if divLC is 'fareast'
-          $('table .data').eq(6).children('tr').each (i, element) ->
-            if (i == 0)
-              payload += "FIBB Far East Standings\n"
-            else 
-              $(this).children('td .dl').each (j, element) ->
-                teamName = $(this).text();
-                wins[teamName] = $(this).next('td').text()
-                loses[teamName] = $(this).next('td').next('td').text()
-                pct[teamName] = $(this).next('td').next('td').next('td').text()
-                gb[teamName] = $(this).next('td').next('td').next('td').next('td').text()
-                payload += padString(teamName, 25) + " | " + padString(wins[teamName],5) + padString(loses[teamName],5) + padString(pct[teamName], 6) + " " + padString(gb[teamName], 5) + "\n"
         if divLC is 'fibbwc'
-          $('table .data').eq(7).children('tr').each (i, element) ->
+          $('table .data').eq(5).children('tr').each (i, element) ->
             if (i == 0)
               payload += "FIBB Wildcard Standings\n"
             else 
@@ -371,6 +347,30 @@ module.exports = (robot) ->
                 pct[teamName] = $(this).next('td').next('td').next('td').text()
                 gb[teamName] = $(this).next('td').next('td').next('td').next('td').text()
                 payload += padString(teamName, 25) + " | " + padString(wins[teamName],5) + padString(loses[teamName],5) + padString(pct[teamName], 6) + " " + padString(gb[teamName], 5) + "\n"
+        ##if divLC is 'fareast'
+        ##  $('table .data').eq(6).children('tr').each (i, element) ->
+        ##    if (i == 0)
+        ##      payload += "FIBB Far East Standings\n"
+        ##    else 
+        ##      $(this).children('td .dl').each (j, element) ->
+        ##        teamName = $(this).text();
+        ##        wins[teamName] = $(this).next('td').text()
+        ##        loses[teamName] = $(this).next('td').next('td').text()
+        ##        pct[teamName] = $(this).next('td').next('td').next('td').text()
+        ##        gb[teamName] = $(this).next('td').next('td').next('td').next('td').text()
+        ##        payload += padString(teamName, 25) + " | " + padString(wins[teamName],5) + padString(loses[teamName],5) + padString(pct[teamName], 6) + " " + padString(gb[teamName], 5) + "\n"
+        ##if divLC is 'fibbwc'
+        ##  $('table .data').eq(7).children('tr').each (i, element) ->
+        ##    if (i == 0)
+        ##      payload += "FIBB Wildcard Standings\n"
+        ##    else 
+        ##      $(this).children('td .dl').each (j, element) ->
+        ##        teamName = $(this).text();
+        ##        wins[teamName] = $(this).next('td').text()
+        ##        loses[teamName] = $(this).next('td').next('td').text()
+        ##        pct[teamName] = $(this).next('td').next('td').next('td').text()
+        ##        gb[teamName] = $(this).next('td').next('td').next('td').next('td').text()
+        ##        payload += padString(teamName, 25) + " | " + padString(wins[teamName],5) + padString(loses[teamName],5) + padString(pct[teamName], 6) + " " + padString(gb[teamName], 5) + "\n"
         
         payload = "```" + payload + "```"
         res.send payload
